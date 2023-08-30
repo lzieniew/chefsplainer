@@ -31,11 +31,13 @@ export default {
       };
 
       this.mediaRecorder.start();
+      this.$emit("speech-detected", true);
     },
     stopRecording() {
       if (this.mediaRecorder) {
         this.mediaRecorder.stop();
       }
+      this.$emit("speech-detected", false);
     },
     async sendAudioToWhisper(audioBlob) {
       const formData = new FormData();

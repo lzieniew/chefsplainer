@@ -1,26 +1,40 @@
-<template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+`<template>
+  <v-app>
+    <v-main>
+      <v-container fluid>
+        <v-row align="center" justify="center">
+          <v-col cols="12" sm="8" md="4">
+            <v-progress-circular
+              :rotate="isSpeaking ? 180 : 0"
+              :size="100"
+              :width="15"
+              :value="50"
+              color="blue"
+            ></v-progress-circular>
+            <AudioCapture @speech-detected="toggleSpeaking" />
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import AudioCapture from "./components/AudioCapture.vue";
 
 export default {
-  name: 'App',
   components: {
-    HelloWorld
-  }
-}
-</script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+    AudioCapture,
+  },
+  data() {
+    return {
+      isSpeaking: false,
+    };
+  },
+  methods: {
+    toggleSpeaking(status) {
+      this.isSpeaking = status;
+    },
+  },
+};
+</script>`
