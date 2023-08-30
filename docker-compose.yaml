@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  frontend:
+    build: .  # Replace with the path to your Vue.js app's Dockerfile
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+
+  backend:
+    image: onerahmet/openai-whisper-asr-webservice
+    ports:
+      - "5000:9000"
